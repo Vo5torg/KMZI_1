@@ -6,7 +6,7 @@
 
 using namespace std;
 
-uint32_t bits_1;   //переменная для сдвига x^23+x^9+1
+uint32_t bits_1;   //переменная для сдвига x^23+x^5+1
 uint64_t bits_2_1; //первая переменная для полинома x^124+x^37+1
 uint64_t bits_2_2; //вторая переменная для полинома x^124+x^37+1
 uint64_t for_zero_first_bit_64 = 0xFFFFFFFFFFFFFFFE;
@@ -48,10 +48,10 @@ void print_bits(uint64_t bits) //функция для вывода 64-х бит
 
 uint32_t next_step_1() //функция сдвига 32-х битного числа
 {
-    /* С помощью смежного полинома (1+ x^-14 + x^-23) находим выходной бит,
+    /* С помощью смежного полинома (1+ x^-16 + x^-23) находим выходной бит,
      * далее сдвигаем биты влево на 1 и записываем на первую позицию выходной бит
      */
-    uint32_t response_bit = ((bits_1 >> 13) ^ (bits_1 >> 22)) & 0x1;
+    uint32_t response_bit = ((bits_1 >> 15) ^ (bits_1 >> 22)) & 0x1;
     bits_1 = (((bits_1 << 1) & for_zero_first_bit_32) | response_bit);
     return response_bit;
 }
